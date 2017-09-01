@@ -1,4 +1,7 @@
+#!/usr/bin/env python
+
 import ConfigParser
+import os
 import sys
 
 if __name__ == '__main__':
@@ -14,6 +17,11 @@ if __name__ == '__main__':
     config.add_section('Auth')
     config.set('Auth', 'URL', url)
     config.set('Auth', 'Token', token)
+
+    if os.path.exists('auth.cfg'):
+        print 'file "auth.cfg" found!'
+        print 'please remove it for generating new one'
+        sys.exit()
 
     with open('auth.cfg', 'w+') as cfg:
         config.write(cfg) 
